@@ -16,7 +16,7 @@ from streamlit_folium import st_folium
 from sidebar import sidebar
 
 # 3.16000, 101.71000 : Kuala Lumpur
-
+st.image('mmu-multimedia-university6129.png', use_column_width=False, caption='', width=200, )
 def read_file(filename, sheetname):
     excel_file = pd.ExcelFile(filename)
     data_d = excel_file.parse(sheet_name=sheetname)
