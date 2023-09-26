@@ -80,9 +80,36 @@ if __name__ == '__main__':
         latitude = itp_data['map_latitude']
         longitude = itp_data['map_longitude']
         company_name = itp_data['Company name']
-        popup_name = '<strong>' + str(itp_data['Company name']) + '</strong>\n' + str(itp_data['Company address'])
+        company_address = itp_data['Company address']
+        company_email = itp_data['Company Email'] 
+        company_tel = itp_data['Company Tel'] 
+        company_industry = itp_data['industry'] 
+        
+        # Create a customized HTML popup with two sections
+        popup_content = f"""
+        <div>
+            <strong>{company_name}</strong><br>
+            <em>Address:</em> {company_address}<br>
+        </div>
+        <hr>
+        <div>
+            <em>Email:</em> {company_email}<br>
+            <em>Tel:</em> {company_tel}<br>
+            <em>Industry:</em> {company_industry}
+        </div>
+        """
+
         if not math.isnan(latitude) and not math.isnan(longitude):
-            folium.Marker(location=[latitude, longitude], popup=popup_name, tooltip=company_name).add_to(map_my)
+            # Create a marker with the customized HTML popup
+            marker = folium.Marker(location=[latitude, longitude], tooltip=company_name)
+            marker.add_to(map_my)
+
+            # Add a click event to the marker to display a popup on click
+            folium.Popup(popup_content, max_width=400).add_to(marker)
+
+    # Save the map with markers and popups to an HTML file
+    map_my.save('itp_area_map.html')
+
     # for itp_data in itp_list_state.to_dict(orient='records'):
     #     latitude = itp_data['map_latitude']
     #     longitude = itp_data['map_longitude']
