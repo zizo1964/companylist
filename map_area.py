@@ -116,8 +116,8 @@ if __name__ == '__main__':
             </div>
             """
 
-            # Use Streamlit to display detailed company information when the basic popup link is clicked
-            if st.sidebar.button(f"Show Details for {company_name}", key=f"{company_name}_button"):
+            # Display detailed information below the map when a marker is clicked
+            if st.button("Show Details"):
                 selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
 
                 
