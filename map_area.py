@@ -128,9 +128,9 @@ if __name__ == '__main__':
         map_html = map_file.read()
         components.html(map_html, 1000, 600)
 
-    # Display the detailed company information below the map
-    selected_company.markdown("### Selected Company Details")
-
+    # Display detailed information below the map when a marker is clicked
+    if st.button("Show Details"):
+        selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
     # for itp_data in itp_list_state.to_dict(orient='records'):
     #     latitude = itp_data['map_latitude']
     #     longitude = itp_data['map_longitude']
