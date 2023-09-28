@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     # Create a section in Streamlit to display the detailed company information
     st.sidebar.title('Company Details')
-    selected_company = st.sidebar.empty()
+    selected_company = st.empty()
 
     text_load_state.text('Plotting ...')
 
@@ -107,16 +107,18 @@ if __name__ == '__main__':
 
             # Create a customized HTML popup for detailed information
             popup_content_detailed = f"""
-            <strong>{company_name}</strong><br>
-            <em>Address:</em> {company_address}<br>
-            <em>Email:</em> {company_email}<br>
-            <em>Tel:</em> {company_tel}<br>
-            <em>Industry:</em> {company_industry}
+            <div style="width: 300px;">
+                <strong>{company_name}</strong><br>
+                <em>Address:</em> {company_address}<br>
+                <em>Email:</em> {company_email}<br>
+                <em>Tel:</em> {company_tel}<br>
+                <em>Industry:</em> {company_industry}
+            </div>
             """
 
             # Use Streamlit to display detailed company information when the basic popup link is clicked
-            if st.sidebar.button(f"Show Details for {company_name}", key=f"{company_name}_button"):
-                selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
+            marker.add_child(folium.ClickForMarker(popup=popup_content_detailed))
+                
 
     # Save the map with markers and basic popups to an HTML file
     map_my.save('itp_area_map.html')
