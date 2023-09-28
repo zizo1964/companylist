@@ -76,7 +76,7 @@ if __name__ == '__main__':
     folium.GeoJsonTooltip(fields=['NAME_1','NAME_2', 'count'], aliases=['State','District', 'Count']).add_to(choropleth.geojson)
 
     # Create a section in Streamlit to display the detailed company information
-    st.sidebar.title('Company Details')
+    st.title('Company Details')
     selected_company = st.empty()
 
     text_load_state.text('Plotting ...')
