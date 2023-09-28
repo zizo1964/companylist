@@ -123,10 +123,7 @@ if __name__ == '__main__':
     # Save the map with markers and basic popups to an HTML file
     map_my.save('itp_area_map.html')
     
-    # Display the HTML file in Streamlit
-    with open('itp_area_map.html', 'r', encoding='utf-8') as map_file:
-        map_html = map_file.read()
-        components.html(map_html, 1000, 600)
+    
 
     # Display detailed information below the map when a marker is clicked
     if st.button("Show Details"):
@@ -156,6 +153,10 @@ if __name__ == '__main__':
     # p = open('itp_area_map.html')
     p = open('itp_area_map.html', 'r', encoding='utf-8')
     components.html(p.read(), 1000, 600)
+    
+    # Display detailed information below the map when a marker is clicked
+    if st.button("Show Details"):
+        selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
 
 
 #python -m streamlit run map_area.py
