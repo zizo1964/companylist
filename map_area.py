@@ -75,12 +75,7 @@ if __name__ == '__main__':
 
     folium.GeoJsonTooltip(fields=['NAME_1','NAME_2', 'count'], aliases=['State','District', 'Count']).add_to(choropleth.geojson)
 
-    # Create a section in Streamlit to display the detailed company information
-    st.title('Company Details')
-    selected_company = st.empty()
-
     text_load_state.text('Plotting ...')
-
     for itp_data in itp_list_state.to_dict(orient='records'):
         latitude = itp_data['map_latitude']
         longitude = itp_data['map_longitude']
@@ -91,10 +86,17 @@ if __name__ == '__main__':
         company_industry = itp_data['industry'] 
         
         # Create a customized HTML popup with two sections
-        popup_content_basic = f"""
-        <strong>{company_name}</strong><br>
-        <em>Address:</em> {company_address}<br>
-        <a href="#" onclick="selectCompany('{company_name}')">Show Details</a>
+        popup_content = f"""
+        <div>
+            <strong>{company_name}</strong><br>
+            <em>Address:</em> {company_address}<br>
+        </div>
+        <hr>
+        <div>
+            <em>Email:</em> {company_email}<br>
+            <em>Tel:</em> {company_tel}<br>
+            <em>Industry:</em> {company_industry}
+        </div>
         """
 
         if not math.isnan(latitude) and not math.isnan(longitude):
@@ -103,27 +105,10 @@ if __name__ == '__main__':
             marker.add_to(map_my)
 
             # Add a click event to the marker to display a popup on click
-            folium.Popup(popup_content_basic, max_width=300).add_to(marker)
-           
+            folium.Popup(popup_content, max_width=400).add_to(marker)
 
-            # Create a customized HTML popup for detailed information
-            popup_content_detailed = f"""
-            <div style="width: 300px;">
-                <strong>{company_name}</strong><br>
-                <em>Address:</em> {company_address}<br>
-                <em>Email:</em> {company_email}<br>
-                <em>Tel:</em> {company_tel}<br>
-                <em>Industry:</em> {company_industry}
-            </div>
-            """
-
-            # Add a click event to the marker to display detailed information in a separate section
-            marker.add_child(folium.ClickForMarker(popup=popup_content_detailed))
-                
-               
-    # Save the map with markers and basic popups to an HTML file
+    # Save the map with markers and popups to an HTML file
     map_my.save('itp_area_map.html')
-    
 
     # for itp_data in itp_list_state.to_dict(orient='records'):
     #     latitude = itp_data['map_latitude']
@@ -150,6 +135,6 @@ if __name__ == '__main__':
     # p = open('itp_area_map.html')
     p = open('itp_area_map.html', 'r', encoding='utf-8')
     components.html(p.read(), 1000, 600)
-    
 
-    #python -m streamlit run map_area.py
+
+#python -m streamlit run map_area.py
