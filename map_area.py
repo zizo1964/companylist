@@ -104,6 +104,7 @@ if __name__ == '__main__':
 
             # Add a click event to the marker to display a popup on click
             folium.Popup(popup_content_basic, max_width=300).add_to(marker)
+           
 
             # Create a customized HTML popup for detailed information
             popup_content_detailed = f"""
@@ -119,6 +120,8 @@ if __name__ == '__main__':
             # Display detailed information below the map when a marker is clicked
             if st.button("Show Details"):
                 selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
+                
+             marker.add_child(folium.ClickForMarker(popup=popup_content_detailed))   
 
                 
 
