@@ -83,8 +83,8 @@ if __name__ == '__main__':
         company_name = itp_data['Company name']
         company_address = itp_data['Company address']
         company_email = itp_data['Company Email']  # Add this line
-        company_tel = itp_data['Company tel']  # Add this line
-        industry = itp_data['Industry']  # Add this line
+        company_tel = itp_data['Company Tel']  # Add this line
+        industry = itp_data['industry']  # Add this line
 
         popup_name = '<strong>' + str(company_name) + '</strong>\n' + str(company_address)
         popup_content_detailed = (
