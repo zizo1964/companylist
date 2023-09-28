@@ -117,14 +117,10 @@ if __name__ == '__main__':
             </div>
             """
 
-            # Display detailed information below the map when a marker is clicked
-            if st.button("Show Details"):
-                selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
+            # Add a click event to the marker to display detailed information in a separate section
+            marker.add_child(folium.ClickForMarker(popup=popup_content_detailed))
                 
-             marker.add_child(folium.ClickForMarker(popup=popup_content_detailed))   
-
-                
-
+               
     # Save the map with markers and basic popups to an HTML file
     map_my.save('itp_area_map.html')
     
