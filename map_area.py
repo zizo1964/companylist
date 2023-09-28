@@ -82,7 +82,7 @@ if __name__ == '__main__':
         longitude = itp_data['map_longitude']
         company_name = itp_data['Company name']
         company_address = itp_data['Company address']
-        company_email = itp_data['Company email']  # Add this line
+        company_email = itp_data['Company Email']  # Add this line
         company_tel = itp_data['Company tel']  # Add this line
         industry = itp_data['Industry']  # Add this line
 
