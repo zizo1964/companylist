@@ -123,11 +123,11 @@ if __name__ == '__main__':
     # Save the map with markers and basic popups to an HTML file
     map_my.save('itp_area_map.html')
     
-    
 
     # Display detailed information below the map when a marker is clicked
     if st.button("Show Details"):
         selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
+        
     # for itp_data in itp_list_state.to_dict(orient='records'):
     #     latitude = itp_data['map_latitude']
     #     longitude = itp_data['map_longitude']
@@ -154,9 +154,5 @@ if __name__ == '__main__':
     p = open('itp_area_map.html', 'r', encoding='utf-8')
     components.html(p.read(), 1000, 600)
     
-    # Display detailed information below the map when a marker is clicked
-    if st.button("Show Details"):
-        selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
 
-
-#python -m streamlit run map_area.py
+    #python -m streamlit run map_area.py
