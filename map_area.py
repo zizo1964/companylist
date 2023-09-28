@@ -117,17 +117,15 @@ if __name__ == '__main__':
             """
 
             # Use Streamlit to display detailed company information when the basic popup link is clicked
-            marker.add_child(folium.ClickForMarker(popup=popup_content_detailed))
+            if st.sidebar.button(f"Show Details for {company_name}", key=f"{company_name}_button"):
+                selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
+
                 
 
     # Save the map with markers and basic popups to an HTML file
     map_my.save('itp_area_map.html')
     
 
-    # Display detailed information below the map when a marker is clicked
-    if st.button("Show Details"):
-        selected_company.markdown(popup_content_detailed, unsafe_allow_html=True)
-        
     # for itp_data in itp_list_state.to_dict(orient='records'):
     #     latitude = itp_data['map_latitude']
     #     longitude = itp_data['map_longitude']
