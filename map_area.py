@@ -92,7 +92,7 @@ if __name__ == '__main__':
             <em>Address:</em> {company_address}<br>
         </div>
         <hr>
-        <div>
+        <div style='background-color: #f4f4f4; padding: 10px; border-radius: 5px;'>
             <em>Email:</em> {company_email}<br>
             <em>Tel:</em> {company_tel}<br>
             <em>Industry:</em> {company_industry}
